@@ -13,9 +13,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    let requestFactory = RequestFactory()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let auth = requestFactory.makeAuthRequestFatory()
+        auth.registation(userName: "Somebody", password: "mypassword", email: "test@mail.ru", gender: "m", credit_card: "12312214124", bio: "I want to be a cake") { (response) in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        auth.login(userName: "Somebody", password: "mypassword") { response in
+            switch response.result {
+            case .success(let login):
+                print(login)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        auth.changeData(userName: "Somebody", password: "mypassword", email: "test@mail.ru", gender: "m", credit_card: "12312214124", bio: "I want to be a cake") { (response) in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        auth.logout(idUser: "123") { (response) in
+            switch response.result {
+            case .success(let result):
+                print(result)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
         return true
     }
 
