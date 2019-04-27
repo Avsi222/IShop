@@ -27,6 +27,8 @@
 		9AC180582272F33000E1541C /* LogoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC180572272F33000E1541C /* LogoutResult.swift */; };
 		9AC1805A2272F5D300E1541C /* RegistrResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC180592272F5D300E1541C /* RegistrResult.swift */; };
 		9AC1805C2272F95500E1541C /* ChangeDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1805B2272F95500E1541C /* ChangeDataResult.swift */; };
+		9AC1805E2272FC0700E1541C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AC1805D2272FC0700E1541C /* Main.storyboard */; };
+		9AC1806A2274C2BB00E1541C /* LoginTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC180692274C2BB00E1541C /* LoginTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,8 @@
 		9AC180572272F33000E1541C /* LogoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResult.swift; sourceTree = "<group>"; };
 		9AC180592272F5D300E1541C /* RegistrResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrResult.swift; sourceTree = "<group>"; };
 		9AC1805B2272F95500E1541C /* ChangeDataResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeDataResult.swift; sourceTree = "<group>"; };
+		9AC1805D2272FC0700E1541C /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		9AC180692274C2BB00E1541C /* LoginTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTest.swift; sourceTree = "<group>"; };
 		C5934F9F57A521F19AEE49C4 /* Pods-IShopTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IShopTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IShopTests/Pods-IShopTests.release.xcconfig"; sourceTree = "<group>"; };
 		DD7072C4DD02E1C72ACAF317 /* Pods-IShopUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IShopUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-IShopUITests/Pods-IShopUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -171,6 +175,7 @@
 			children = (
 				9A0C8DBA226CD61500BF40AB /* IShopTests.swift */,
 				9A0C8DBC226CD61500BF40AB /* Info.plist */,
+				9AC180692274C2BB00E1541C /* LoginTest.swift */,
 			);
 			path = IShopTests;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 		9AB4ADD4226CD87F007BEFD1 /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				9AC1805D2272FC0700E1541C /* Main.storyboard */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -383,6 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AC1805E2272FC0700E1541C /* Main.storyboard in Resources */,
 				9A0C8DB0226CD61500BF40AB /* LaunchScreen.storyboard in Resources */,
 				9A0C8DAD226CD61500BF40AB /* Assets.xcassets in Resources */,
 			);
@@ -521,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A0C8DBB226CD61500BF40AB /* IShopTests.swift in Sources */,
+				9AC1806A2274C2BB00E1541C /* LoginTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

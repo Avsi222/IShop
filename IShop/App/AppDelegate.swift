@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch response.result {
             case .success(let login):
                 print(login)
+                print(login.user)
             case .failure(let error):
                 print(error.localizedDescription)
             }
