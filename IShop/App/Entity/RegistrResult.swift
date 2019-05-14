@@ -9,6 +9,6 @@
 import Foundation
 
 struct RegistrResult: Codable {
-    let result: Int
     let userMessage:String
+    let result: Int
 }

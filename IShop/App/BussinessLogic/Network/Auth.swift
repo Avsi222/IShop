@@ -13,7 +13,8 @@ class Auth: AbstractRequestFactory {
     let errorParser: AbstractErrorParser
     let sessionManager: SessionManager
     let queue: DispatchQueue?
-    let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    //let baseUrl = URL(string: "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses/")!
+    let baseUrl = URL(string: "http://localhost:8080/")!
     
     init(
         errorParser: AbstractErrorParser,
@@ -41,7 +42,7 @@ extension Auth: AuthRequestFactory {
     }
     func registation(userName: String, password: String, email: String, gender: String, credit_card: String, bio: String, completionHandler: @escaping (DataResponse<RegistrResult>) -> Void) {
         let requestModel = Registr(baseUrl: baseUrl, username: userName, password: password, email: email, gender: gender, credit_card: credit_card, bio: bio)
-        self.request(request: requestModel, completionHandler: completionHandler)
+        self.request(request: requestModel, completionHandler: completionHandler).session.finishTasksAndInvalidate()
     }
 }
 
@@ -49,13 +50,13 @@ extension Auth {
     struct Login: RequestRouter {
         let baseUrl: URL
         let method: HTTPMethod = .get
-        let path: String = "login.json"
+        let path: String = "login"
         
         let login: String
         let password: String
         var parameters: Parameters? {
             return [
-                "username": login,
+                "login": login,
                 "password": password
             ]
         }
@@ -72,14 +73,14 @@ extension Auth {
         
         let baseUrl: URL
         let method: HTTPMethod = .get
-        let path: String = "logout.json"
+        let path: String = "logout"
     }
     struct Registr:RequestRouter {
         var baseUrl: URL
         
-        let path: String = "registerUser.json"
+        let path: String = "registration"
         
-        let method: HTTPMethod = .get
+        let method: HTTPMethod = .post
         
         let username: String
         let password: String
@@ -87,10 +88,12 @@ extension Auth {
         let gender: String
         let credit_card: String
         let bio: String
+        //let id_user = 123
         
         var parameters: Parameters?{
             return [
-                "username":username,
+                //"id_user":id_user,
+                "login":username,
                 "password":password,
                 "email":email,
                 "gender":gender,

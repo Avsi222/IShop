@@ -12,5 +12,6 @@ class CatalogTableViewCell: UITableViewCell {
     
     @IBOutlet weak var labelNameProduct:UILabel!
     @IBOutlet weak var labelPriceProduct:UILabel!
+    @IBOutlet weak var imageViewProduct:UIImageView!
     
 }

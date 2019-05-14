@@ -11,7 +11,7 @@ import UIKit
 class CatalogTableViewController: UITableViewController {
 
     var products = [Product]()
-    
+    var imagesArray = [UIImage(named: "1"),UIImage(named: "2"),UIImage(named: "3")]
     
     let requestFactory = RequestFactory()
     
@@ -28,16 +28,15 @@ class CatalogTableViewController: UITableViewController {
     }
 
     func loaddata(){
-        //ВОТ ЗДЕСЬ ПРОБЛЕМА
-        // КАК ПРАВИЛЬНО ПОЛУЧИТЬ МАССИВ ПРОДУКТОВ?
         
         let catalog = requestFactory.makeCatalogRequestFatory()
         catalog.get_products(page_number: 1, id_category: 1) { (response) in
             switch response.result {
             case .success(let result):
-                print(result)
-                self.products = result.products
-                self.tableView.reloadData()
+                self.products = result
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -61,57 +60,40 @@ class CatalogTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CatalogTableViewCell
         let productRow = products[indexPath.row]
         cell.labelNameProduct.text = productRow.product_name
-        cell.labelPriceProduct.text = productRow.price
+        cell.labelPriceProduct.text = "\(productRow.price)"
+        cell.imageViewProduct.image = imagesArray[indexPath.row]
 
         // Configure the cell...
 
         return cell
     }
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 138
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    
+    var sendProductId = 0
+        
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        sendProductId = indexPath.row
+        performSegue(withIdentifier: "productClick", sender: nil)
     }
-    */
+    
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.destination is ProductViewController{
+            let vc = segue.destination as! ProductViewController
+            vc.image = imagesArray[sendProductId]
+            vc.productInfo = products[sendProductId]
+        }
     }
-    */
+    
 
 }

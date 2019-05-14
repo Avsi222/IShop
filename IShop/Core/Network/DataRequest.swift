@@ -59,5 +59,6 @@ extension AbstractRequestFactory {
             return sessionManager
                 .request(request)
                 .responseCodable(errorParser: errorParser, queue: queue, completionHandler: completionHandler)
+            
     }
 }
