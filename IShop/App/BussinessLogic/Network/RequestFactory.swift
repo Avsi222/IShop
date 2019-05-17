@@ -31,8 +31,12 @@ class RequestFactory {
         return Auth(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
     
-    func makeCatalogRequestFatory() -> CatalogueAndBacketRequestFactory {
+    func makeCatalogRequestFatory() -> CatalogueRequestFactory {
         let errorParser = makeErrorParser()
         return Catalog(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
+    }
+    func makeCartRequestFatory() -> CartRequestFactory {
+        let errorParser = makeErrorParser()
+        return Cart(errorParser: errorParser, sessionManager: commonSessionManager, queue: sessionQueue)
     }
 }
