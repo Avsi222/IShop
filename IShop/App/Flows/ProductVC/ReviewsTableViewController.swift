@@ -28,7 +28,8 @@ class ReviewsTableViewController: UITableViewController {
         
     }
 
-    @objc func addReviewPress(_ sender: UIButton){
+    @objc
+    func addReviewPress(_ sender: UIButton){
         //1. Create the alert controller.
         let alert = UIAlertController(title: "Отзыв", message: "Напишите ваш отызв", preferredStyle: .alert)
         
@@ -58,9 +59,7 @@ class ReviewsTableViewController: UITableViewController {
             case .success(let result):
                 print(result)
                 self.reviewsArray.append(Reviews(id_user: 1, text: text, id_review: 1))
-                let alert = UIAlertController(title: "Поздравляю", message: "Вы оставили отзыв", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                alertFunc.showAlert(title: "Поздравляю", text: "Отзыва добавлен", vc: self)
                 self.tableView.reloadData()
                 
             case .failure(let error):
