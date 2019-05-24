@@ -44,9 +44,7 @@ class ProductViewController: UIViewController {
             switch response.result {
                 case .success(let result):
                 print(result)
-                let alert = UIAlertController(title: "Поздравляю", message: "Товар добавлен в корзину", preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Ок", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+                alertFunc.showAlert(title: "Поздравляю", text: "Товар добавлен в корзину", vc: self)
                 
                 case .failure(let error):
                 print(error.localizedDescription)
